@@ -45,6 +45,15 @@ export default function Result() {
           Retake
         </button>
       </div>
+
+      <div className="text-center pt-4">
+        <button
+          className="bg-gray-200 py-1 px-3 rounded"
+          onClick={() => navigate('/review', { state })}
+        >
+          Review questions one-by-one
+        </button>
+      </div>
     </main>
   );
 } 
