@@ -1,22 +1,30 @@
 import fs from 'fs/promises';
+import path from 'path';
 
-export default async (req) => {
-  const url = new URL(req.url);
-  const count = Math.min(Number(url.searchParams.get('count') || 20), 50);
+export async function handler(event) {
+  const params = new URLSearchParams(event.queryStringParameters);
+  const n = Math.min(Number(params.get('count') || 20), 50);
 
-  if (!global.bank) {
-    const raw = await fs.readFile('public/test_bank.json', 'utf8');
-    global.bank = JSON.parse(raw);
-  }
-
-  const sample = global.bank
-    .sort(() => 0.5 - Math.random())
-    .slice(0, count)
-    .map(({ explanation, ...q }) => q);
-
-  return new Response(JSON.stringify(sample), {
-    headers: {
-      'content-type': 'application/json'
+  try {
+    if (!global.bank) {
+      const filePath = path.join(process.cwd(), 'public', 'test_bank.json');
+      const raw = await fs.readFile(filePath, 'utf8');
+      global.bank = JSON.parse(raw);
     }
-  });
-}; 
+
+    const sample = [...global.bank]
+      .sort(() => 0.5 - Math.random())
+      .slice(0, n)
+      .map(({ explanation, ...q }) => q);
+
+    return {
+      statusCode: 200,
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(sample)
+    };
+  } catch (err) {
+    return { statusCode: 500, body: String(err) };
+  }
+} 
