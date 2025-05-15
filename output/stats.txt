@@ -1,0 +1,8 @@
+Total Questions: 400
+Average Words per Question: 12.9
+Difficulty Distribution:
+  Easy: 200 (50.0%)
+  Medium: 140 (35.0%)
+  Hard: 60 (15.0%)
+Coverage: 100.0% of 20 second-level headings
+Hardest Section: Rules of the Road (avg difficulty 1.8)

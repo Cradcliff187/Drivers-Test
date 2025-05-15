@@ -1,0 +1,49 @@
+{
+  "overall": {
+    "totalQuestions": 400,
+    "easyQuestions": 200,
+    "mediumQuestions": 140,
+    "hardQuestions": 60,
+    "coveragePercent": 100.0
+  },
+  "RulesOfTheRoad": {
+    "totalQuestions": 84,
+    "easyQuestions": 33,
+    "mediumQuestions": 29,
+    "hardQuestions": 22,
+    "coveragePercent": 100.0,
+    "title": "Rules of the Road"
+  },
+  "Safety": {
+    "totalQuestions": 79,
+    "easyQuestions": 34,
+    "mediumQuestions": 29,
+    "hardQuestions": 16,
+    "coveragePercent": 100.0,
+    "title": "Driver Safety"
+  },
+  "Signs": {
+    "totalQuestions": 81,
+    "easyQuestions": 41,
+    "mediumQuestions": 29,
+    "hardQuestions": 11,
+    "coveragePercent": 100.0,
+    "title": "Traffic Signs and Signals"
+  },
+  "Licensing": {
+    "totalQuestions": 82,
+    "easyQuestions": 54,
+    "mediumQuestions": 21,
+    "hardQuestions": 7,
+    "coveragePercent": 100.0,
+    "title": "Driver Licensing Information"
+  },
+  "Emergencies": {
+    "totalQuestions": 87,
+    "easyQuestions": 43,
+    "mediumQuestions": 35,
+    "hardQuestions": 9,
+    "coveragePercent": 100.0,
+    "title": "Handling Emergencies"
+  }
+}
