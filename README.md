@@ -47,7 +47,7 @@ For OCR capabilities (to handle scanned pages), you need to install Tesseract OC
    ```
 3. Run the generator:
    ```
-   python run_generator.py
+   python generate_and_fix.py
    ```
 
 ### Command Line Options
@@ -62,13 +62,42 @@ Example:
 python run_generator.py --pdf Drivers-Manual-5-27-2021-Update.pdf --num_questions 500 --extract_images
 ```
 
+## Enhanced Question Generator
+
+This project includes an enhanced question generation and fixing pipeline:
+
+```
+python generate_and_fix.py
+```
+
+This command:
+1. Generates raw questions using the simple generator
+2. Applies an enhanced fixing algorithm to improve question quality
+3. Runs quality control checks to ensure all questions meet standards
+
+### Previewing Enhanced Questions
+
+To preview the enhanced questions:
+
+```
+python preview_enhanced.py --compare
+```
+
+Options:
+- `--input PATH`: Path to the question bank file (default: "output/enhanced_test_bank.json")
+- `--compare`: Show side-by-side comparison with original questions
+- `--num N`: Number of questions to preview (default: 5)
+- `--filter TEXT`: Filter questions by section or content
+
 ## Output Files
 
-The generator creates three main output files in the specified output directory:
+The generator creates several output files in the specified output directory:
 
-1. `test_bank.json`: The complete test bank with all questions in JSON format
-2. `coverage_report.json`: Statistics on section coverage and question distribution
-3. `stats.txt`: Human-readable summary of the test bank generation
+1. `test_bank.json`: The raw generated test bank before enhancements
+2. `enhanced_test_bank.json`: The improved test bank after question fixing
+3. `coverage_report.json`: Statistics on section coverage and question distribution
+4. `qc_report.json`: Quality control report showing pass/fail metrics
+5. `stats.txt`: Human-readable summary of the test bank generation
 
 If image extraction is enabled, images will be saved to an `images` subdirectory.
 

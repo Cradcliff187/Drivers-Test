@@ -2,17 +2,29 @@ import os
 import json
 import random
 import re
+import argparse
 from collections import defaultdict
 
 def main():
+    # Add command line argument support
+    parser = argparse.ArgumentParser(description="Kentucky Driver's Manual Test-Bank Quality Control")
+    parser.add_argument("--input", default="output/test_bank.json", help="Path to the input test bank JSON file")
+    parser.add_argument("--output", default=None, help="Path to the output test bank JSON file (defaults to overwriting input)")
+    args = parser.parse_args()
+    
+    # Use the provided input path
+    test_bank_path = args.input
+    
+    # If no output path is provided, use the input path
+    output_path = args.output if args.output else test_bank_path
+    
     print("\n==== Kentucky Driver's Manual Test-Bank QC ====\n")
     
     # Load the test bank
-    test_bank_path = os.path.join("output", "test_bank.json")
     with open(test_bank_path, "r") as f:
         questions = json.load(f)
     
-    print(f"Loaded {len(questions)} questions from test bank")
+    print(f"Loaded {len(questions)} questions from test bank: {test_bank_path}")
     
     # Define banned phrases
     banned_phrases = [
@@ -99,8 +111,26 @@ def main():
     print(f"Hard: {difficulty_counts['hard']} ({difficulty_counts['hard']/len(final_questions)*100:.1f}%)")
     
     # Save updated test bank
-    with open(test_bank_path, "w") as f:
+    with open(output_path, "w") as f:
         json.dump(final_questions, f, indent=2)
+    
+    # Generate QC report
+    qc_report = {
+        "total_questions": len(questions),
+        "passing_questions": len(fixed_questions),
+        "regenerated_questions": len(regenerated_questions),
+        "final_questions": len(final_questions),
+        "difficulty_distribution": {
+            "easy": difficulty_counts['easy'],
+            "medium": difficulty_counts['medium'],
+            "hard": difficulty_counts['hard']
+        }
+    }
+    
+    # Save QC report
+    qc_report_path = os.path.join(os.path.dirname(output_path), "qc_report.json")
+    with open(qc_report_path, "w") as f:
+        json.dump(qc_report, f, indent=2)
     
     # Update coverage report and stats
     update_coverage_report(final_questions)
@@ -110,7 +140,8 @@ def main():
     preview_questions = random.sample(fixed_questions, min(10, len(fixed_questions)))
     show_preview(preview_questions)
     
-    print(f"\nQC completed. Updated test bank saved to {test_bank_path}")
+    print(f"\nQC completed. Updated test bank saved to {output_path}")
+    print(f"QC report saved to {qc_report_path}")
 
 def regenerate_questions(questions_to_regenerate):
     """

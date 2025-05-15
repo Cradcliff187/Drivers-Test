@@ -33,4 +33,12 @@ env/
 
 # Project-specific
 Drivers-Manual-5-27-2021-Update.pdf
-output/test_bank.json 
+output/test_bank.json
+output/
+# Temp and log files
+temp_*.txt
+temp_*
+*.log
+*.tmp
+
+# ... rest of the file remains unchanged ... 

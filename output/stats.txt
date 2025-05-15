@@ -1,8 +1,8 @@
-Total Questions: 400
-Average Words per Question: 12.9
+Total Questions: 450
+Average Words per Question: 12.8
 Difficulty Distribution:
-  Easy: 200 (50.0%)
-  Medium: 140 (35.0%)
-  Hard: 60 (15.0%)
+  Easy: 225 (50.0%)
+  Medium: 157 (34.9%)
+  Hard: 68 (15.1%)
 Coverage: 100.0% of 20 second-level headings
-Hardest Section: Rules of the Road (avg difficulty 1.8)
+Hardest Section: Handling Emergencies (avg difficulty 1.7)
