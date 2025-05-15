@@ -1,5 +1,9 @@
 # Kentucky Driver's Manual Test-Bank Generator
 
+A comprehensive tool for generating test questions based on the Kentucky Driver's Manual.
+
+Updated: May 15, 2025
+
 This project processes the Kentucky State Driver's Manual PDF and generates a comprehensive test bank of multiple-choice questions. The questions can be used for study purposes or integrated into a testing application.
 
 ## Features
